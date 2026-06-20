@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Museum Cinta Kita ✦ Buku Cerita</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ==================== SPLASH SCREEN ==================== -->
+    <div id="splash" class="splash">
+        <div class="splash-glow-1"></div>
+        <div class="splash-glow-2"></div>
+        <div class="splash-card">
+            <div class="splash-icon">🏛️✨</div>
+            <h1 class="splash-title">Museum<br>Cinta Lembut</h1>
+            <div class="splash-ornament">◈ ❤️ ◈</div>
+            <p class="splash-subtitle">"Tempat di mana setiap kenangan tersimpan selamanya."</p>
+            <button id="btn-enter" class="btn-enter">
+                <span>Buka Buku Cerita</span>
+                <i class="fas fa-book-open"></i>
+            </button>
+        </div>
+        <div id="splash-particles"></div>
+    </div>
+
+    <!-- ==================== CONTAINER BUKU ==================== -->
+    <div id="book-container" class="book-container" style="display:none;">
+
+        <!-- Progress Bar -->
+        <div class="book-progress">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <!-- Header Info -->
+        <div class="book-header">
+            <span class="page-indicator" id="page-indicator">Halaman 1 dari 8</span>
+            <div class="music-mini">
+                <button id="btn-music-mini" class="btn-icon-mini" title="Musik"><i class="fas fa-play"></i></button>
+                <div class="mini-visualizer" id="mini-viz">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 0: GERBANG MUSEUM -->
+        <div class="page active" data-page="0" id="page-0">
+            <div class="page-content gate-page">
+                <div class="gate-frame">
+                    <div class="gate-arch">✦</div>
+                    <h2 class="gate-title">Selamat Datang<br>di Galeri Cinta</h2>
+                    <p class="gate-desc">Sebuah pameran abadi tentang dua hati yang bertemu dalam alunan semesta.</p>
+                    <div class="gate-divider"></div>
+                    <p class="gate-invite">Mulailah perjalananmu...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 1: GALERI FOTO -->
+        <div class="page" data-page="1" id="page-1">
+            <div class="page-content">
+                <div class="page-title-area">
+                    <h2>🖼️ Galeri Kenangan</h2>
+                    <p>Klik bingkai untuk melihat lebih dekat</p>
+                </div>
+                <div class="gallery-masonry" id="gallery-grid"></div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 2: DINDING KENANGAN -->
+        <div class="page" data-page="2" id="page-2">
+            <div class="page-content">
+                <div class="page-title-area">
+                    <h2>📜 Dinding Kenangan</h2>
+                    <p>Sentuh kartu untuk membuka memori</p>
+                </div>
+                <div class="cards-wall" id="kenangan-grid"></div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 3: SURAT CINTA -->
+        <div class="page" data-page="3" id="page-3">
+            <div class="page-content letter-page">
+                <div class="page-title-area">
+                    <h2>✉️ Surat Cinta</h2>
+                    <p>Surat yang ditulis dari hati terdalam</p>
+                </div>
+                <div class="letter-exhibit" id="letter-exhibit">
+                    <div class="envelope-art" id="envelope">
+                        <div class="envelope-wax">💌</div>
+                        <p class="envelope-hint">Sentuh untuk membuka</p>
+                    </div>
+                    <div class="paper-reveal" id="paper" style="display:none;">
+                        <div class="paper-texture">
+                            <div class="paper-header">Untukmu, Sayangku</div>
+                            <div class="paper-body" id="typed-letter"></div>
+                            <div class="paper-footer">— Selamanya ❤️</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 4: LANGIT HARAPAN (REDESIGN) -->
+        <div class="page" data-page="4" id="page-4">
+            <div class="page-content sky-page">
+                <div class="page-title-area">
+                    <h2>🌌 Langit Harapan</h2>
+                    <p>Sentuh bintang, tulis harapanmu</p>
+                </div>
+                <div class="sky-interactive">
+                    <div class="starry-sky" id="starry-sky">
+                        <!-- Bintang diisi JS -->
+                        <div class="moon"></div>
+                    </div>
+                    <div class="sky-panel">
+                        <div class="wish-input-area">
+                            <input type="text" id="wish-input" placeholder="Tulis harapanmu di sini... ✨" maxlength="50">
+                            <button id="btn-add-wish" class="btn-wish"><i class="fas fa-star"></i> Lepaskan ke Langit</button>
+                        </div>
+                        <div class="wish-cloud" id="wish-cloud">
+                            <p class="wish-cloud-title">🌟 Harapan yang Telah Dilepaskan:</p>
+                            <div id="wish-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 5: KOMPIDI PUTAR KENANGAN -->
+<div class="page" data-page="5" id="page-5">
+    <div class="page-content carousel-page">
+        <div class="page-title-area">
+            <h2>🎠 Komidi Putar Kenangan</h2>
+            <p>Putar dan sentuh kenangan yang berputar</p>
+        </div>
+        <div class="carousel-interactive">
+            <!-- Carousel 3D -->
+            <div class="carousel-3d-container" id="carousel-3d">
+                <div class="carousel-3d-track" id="carousel-track">
+                    <!-- Kartu diisi oleh JS -->
+                </div>
+            </div>
+            <!-- Kontrol -->
+            <div class="carousel-controls">
+                <button id="btn-prev-card" class="btn-carousel"><i class="fas fa-chevron-left"></i></button>
+                <span class="carousel-indicator" id="carousel-indicator">1 / 8</span>
+                <button id="btn-next-card" class="btn-carousel"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <!-- Kartu yang diklik -->
+            <div class="carousel-popup" id="carousel-popup">
+                <div class="carousel-popup-inner">
+                    <span class="carousel-popup-close">&times;</span>
+                    <div class="carousel-popup-emoji" id="popup-emoji"></div>
+                    <h3 id="popup-card-title"></h3>
+                    <p id="popup-card-desc"></p>
+                </div>
+            </div>
+            <!-- Form tambah kenangan -->
+            <div class="carousel-add-area">
+                <input type="text" id="carousel-input" placeholder="Tulis kenangan baru... 💭" maxlength="40">
+                <button id="btn-add-memory" class="btn-memory"><i class="fas fa-plus-circle"></i> Tambah</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- HALAMAN 6: RUANG MUSIK KENANGAN (PENGGANTI TIMELINE) -->
+        <div class="page" data-page="6" id="page-6">
+            <div class="page-content music-room-page">
+                <div class="page-title-area">
+                    <h2>🎶 Ruang Musik Kenangan</h2>
+                    <p>Putar piringan hitam, dengarkan lagu yang mengingatkan kita</p>
+                </div>
+                <div class="vinyl-player">
+                    <div class="turntable">
+                        <div class="vinyl-disc" id="vinyl-disc">
+                            <div class="vinyl-label">💗<br>Our Song</div>
+                            <div class="vinyl-groove"></div>
+                        </div>
+                        <div class="tonearm" id="tonearm">
+                            <div class="tonearm-base"></div>
+                            <div class="tonearm-arm"></div>
+                            <div class="tonearm-head"></div>
+                        </div>
+                    </div>
+                    <div class="playlist-panel">
+                        <h3>🎵 Daftar Lagu Kenangan</h3>
+                        <div class="playlist" id="playlist">
+                            <!-- Diisi JS -->
+                        </div>
+                        <div class="now-playing" id="now-playing">
+                            <span>Putar piringan hitam...</span>
+                        </div>
+                        <div class="big-visualizer" id="big-viz">
+                            <span></span><span></span><span></span><span></span><span></span>
+                            <span></span><span></span><span></span><span></span><span></span>
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HALAMAN 7: PENUTUP -->
+        <div class="page" data-page="7" id="page-7">
+            <div class="page-content closing-page">
+                <div class="closing-frame">
+                    <div class="closing-sparkle">✨</div>
+                    <h2>Terima Kasih</h2>
+                    <p class="closing-main">Telah menjadi bagian dari setiap detik yang berharga.</p>
+                    <div class="closing-divider">◈ ❤️ ◈</div>
+                    <p class="closing-quote">"Setiap foto, setiap kenangan, setiap tawa, dan setiap cerita akan selalu memiliki tempat istimewa di Museum Cinta Kita."</p>
+                    <p class="closing-quote">— Hashfi Auzan</p>
+                    <div class="closing-hearts" id="closing-hearts"></div>
+                    <button id="btn-restart" class="btn-restart"><i class="fas fa-rotate-left"></i> Baca Lagi dari Awal</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigasi Halaman -->
+        <div class="page-navigation">
+            <button id="btn-prev" class="btn-nav" disabled><i class="fas fa-chevron-left"></i> Sebelumnya</button>
+            <div class="nav-dots" id="nav-dots"></div>
+            <button id="btn-next" class="btn-nav">Selanjutnya <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-inner">
+            <img id="lightbox-img" src="" alt="">
+            <p id="lightbox-cap"></p>
+        </div>
+    </div>
+
+    <!-- POPUP KENANGAN -->
+    <div id="memory-popup" class="memory-popup">
+        <div class="popup-card">
+            <span class="popup-close">&times;</span>
+            <div class="popup-icon">💌</div>
+            <h3 id="memory-title"></h3>
+            <p id="memory-desc"></p>
+            <div class="popup-hearts"></div>
+        </div>
+    </div>
+
+    <!-- Audio Utama -->
+    <audio id="bgm" loop>
+        <source src="assets/music/lagu.mp3" type="audio/mpeg">
+    </audio>
+    <!-- Audio tambahan untuk playlist -->
+    <audio id="song2" loop><source src="assets/music/lagu2.mp3" type="audio/mpeg"></audio>
+    <audio id="song3" loop><source src="assets/music/lagu3.mp3" type="audio/mpeg"></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.1.0/typed.umd.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
