@@ -245,7 +245,7 @@ for (let i = 1; i <= 20; i++) {
         captions[i - 1]
     }</div>`;
     frame.addEventListener("click", () =>
-        openLightbox(`assets/images/foto${i}.jpg`, captions[i - 1])
+        openLightbox(`foto${i}.jpg`, captions[i - 1])
     );
     gallery.appendChild(frame);
 }
