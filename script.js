@@ -241,7 +241,7 @@ for (let i = 1; i <= 20; i++) {
     frame.className = "gallery-frame";
     frame.setAttribute("data-aos", "fade-up");
     frame.setAttribute("data-aos-delay", i * 30);
-    frame.innerHTML = `<img src="assets/images/foto${i}.jpg" onerror="this.src='https://picsum.photos/400/600?random=${i}'" alt="Foto ${i}"><div class="frame-caption">${
+    frame.innerHTML = `<img src="foto${i}.jpg" onerror="this.src='https://picsum.photos/400/600?random=${i}'" alt="Foto ${i}"><div class="frame-caption">${
         captions[i - 1]
     }</div>`;
     frame.addEventListener("click", () =>
